@@ -12,18 +12,18 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # 1. Android SDK korrekt einrichten (verhindert Lizenz- und Tool-Fehler)
       - uses: android-actions/setup-android@v4
 
-      # 2. Gradle einrichten (stellt den `gradle`-Befehl zur Verfügung)
       - uses: gradle/actions/setup-gradle@v4
         with: 
           gradle-version: 8.7
 
-      # 3. Globalen `gradle`-Befehl nutzen (da kein ./gradlew im Repo existiert)
-      - run: gradle assembleDebug --no-daemon
+      # Führt den Build innerhalb des Unterordners aus
+      - name: Build Debug APK
+        run: gradle assembleDebug --no-daemon
+        working-directory: dein-unterordner
 
       - uses: actions/upload-artifact@v4
         with: 
           name: TriDash-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: C:\Users\schwa\Downloads\TriDash(3)\TriDash
